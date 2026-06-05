@@ -2,7 +2,7 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": false,
-  "buildCommand": "node ./ping-google.js",
+
   "rewrites": [
     { "source": "/about",    "destination": "/about.html" },
     { "source": "/services", "destination": "/services.html" },
