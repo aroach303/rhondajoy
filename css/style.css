@@ -17,8 +17,8 @@
   --off-white:      #FAF9F7;
   --cream:          #F5F2EE;
   --dark:           #2C2825;
-  --text:           #3D3A36;
-  --text-light:     #4A4743;
+  --text:           #1A1714;
+  --text-light:     #2E2B28;
 
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body:    'Jost', sans-serif;
@@ -54,7 +54,7 @@ h1 { font-size: clamp(2.8rem, 6vw, 5rem); }
 h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
 h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
 h4 { font-size: 1.2rem; }
-p  { font-size: 1rem; color: var(--text-light); line-height: 1.8; }
+p  { font-size: 1.05rem; color: var(--text-light); line-height: 1.9; }
 
 .eyebrow {
   font-family: var(--font-body);
@@ -281,7 +281,7 @@ nav a.active::after { transform: scaleX(1); }
   color: var(--coral);
 }
 .hero-sub {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   max-width: 440px;
   margin-bottom: 2.8rem;
   color: var(--text-light);
@@ -480,7 +480,7 @@ nav a.active::after { transform: scaleX(1); }
 .icon-sea   { background: var(--sea-salt-soft); }
 .icon-foam  { background: var(--seafoam-soft); }
 .service-card h3 { font-size: 1.3rem; margin-bottom: 0.8rem; }
-.service-card p  { font-size: 0.92rem; }
+.service-card p  { font-size: 1rem; }
 .service-link {
   display: inline-flex;
   align-items: center;
@@ -549,7 +549,7 @@ nav a.active::after { transform: scaleX(1); }
   font-weight: 500;
 }
 .process-step h3 { font-size: 1.1rem; margin-bottom: 0.6rem; }
-.process-step p  { font-size: 0.88rem; }
+.process-step p  { font-size: 1rem; }
 
 /* ── TESTIMONIALS ── */
 .testimonials-section { background: var(--white); }
@@ -577,7 +577,7 @@ nav a.active::after { transform: scaleX(1); }
   top: 1rem; left: 1.5rem;
 }
 .testimonial-card p {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-style: italic;
   padding-top: 2rem;
   margin-bottom: 1.5rem;
@@ -642,7 +642,7 @@ footer {
 }
 .footer-brand .logo { color: var(--white); margin-bottom: 1rem; }
 .footer-brand .logo span { color: var(--coral-light); }
-.footer-brand p { font-size: 0.88rem; color: rgba(255,255,255,0.5); max-width: 260px; line-height: 1.7; }
+.footer-brand p { font-size: 0.95rem; color: rgba(255,255,255,0.5); max-width: 260px; line-height: 1.7; }
 .footer-col .footer-heading {
   font-family: var(--font-body);
   font-size: 0.7rem;
@@ -654,7 +654,7 @@ footer {
 }
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
 .footer-col ul li a {
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   color: rgba(255,255,255,0.55);
   transition: color var(--transition);
   text-decoration: underline;
@@ -662,7 +662,7 @@ footer {
   text-decoration-color: rgba(255,255,255,0.2);
 }
 .footer-col ul li a:hover { color: var(--white); text-decoration-color: var(--coral); }
-.nap { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.9; }
+.nap { font-size: 0.95rem; color: rgba(255,255,255,0.55); line-height: 1.9; }
 .nap a { color: var(--coral-light); text-decoration: underline; text-underline-offset: 3px; }
 .footer-bottom {
   display: flex;
@@ -728,7 +728,7 @@ footer {
 }
 .value-card .value-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
 .value-card h4 { margin-bottom: 0.4rem; font-size: 1rem; }
-.value-card p  { font-size: 0.85rem; }
+.value-card p  { font-size: 1rem; }
 
 /* ── SERVICES PAGE ── */
 .services-full-grid {
@@ -746,10 +746,10 @@ footer {
 .service-full-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); }
 .service-full-card .service-icon { width: 60px; height: 60px; font-size: 1.8rem; margin-bottom: 1.8rem; }
 .service-full-card h3 { margin-bottom: 1rem; }
-.service-full-card p  { font-size: 0.93rem; margin-bottom: 1.5rem; }
+.service-full-card p  { font-size: 1rem; margin-bottom: 1.5rem; }
 .service-includes { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
 .service-includes li {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--text-light);
   display: flex;
   align-items: center;
