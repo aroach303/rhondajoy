@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rhondajoyinteriordesign.com/sitemap.xml
+Sitemap: https://joysignaturedesigns.com/sitemap.xml
