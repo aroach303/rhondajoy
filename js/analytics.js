@@ -1,38 +1,16 @@
+/* ============================================================
+   RHONDA JOY INTERIOR DESIGN — ANALYTICS
+   Tracks pageviews, sessions, device type, CTA clicks, form submits
+   ============================================================ */
 (function () {
-  const SUPABASE_URL = 'https://YOUR_PROJECT.supabase.co';
+  const SUPABASE_URL      = 'https://YOUR_PROJECT.supabase.co';
   const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY';
+  const script   = document.currentScript;
+  const site     = script ? script.getAttribute('data-site') : 'joysignaturedesigns.com';
+  const SESSION_KEY = 'rj_session';
+  const SESSION_TIMEOUT = 30 * 60 * 1000;
 
-  const script = document.currentScript;
-  const site = script ? script.getAttribute('data-site') : window.location.hostname;
-
-  function getDevice() {
-    const ua = navigator.userAgent;
-    if (/Mobi|Android/i.test(ua)) return 'mobile';
-    if (/Tablet|iPad/i.test(ua)) return 'tablet';
-    return 'desktop';
-  }
-
-  function isNewSession() {
-    const key = 'rj_session';
-    const timeout = 30 * 60 * 1000;
-    const now = Date.now();
-    const last = sessionStorage.getItem(key);
-    if (!last || now - parseInt(last) > timeout) {
-      sessionStorage.setItem(key, now.toString());
-      return true;
-    }
-    sessionStorage.setItem(key, now.toString());
-    return false;
-  }
-
-  function isReturning() {
-    const key = 'rj_visited';
-    const visited = localStorage.getItem(key);
-    localStorage.setItem(key, '1');
-    return !!visited;
-  }
-
-  function post(table, payload) {
+  function send(table, payload) {
     fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
       method: 'POST',
       headers: {
@@ -45,50 +23,75 @@
     }).catch(() => {});
   }
 
-  // Track pageview
-  post('pageviews', {
+  function getDevice() {
+    const ua = navigator.userAgent;
+    if (/tablet|ipad|playbook|silk/i.test(ua)) return 'tablet';
+    if (/mobile|iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(ua)) return 'mobile';
+    return 'desktop';
+  }
+
+  function getOrCreateSession() {
+    try {
+      const raw = sessionStorage.getItem(SESSION_KEY);
+      if (raw) {
+        const s = JSON.parse(raw);
+        if (Date.now() - s.last < SESSION_TIMEOUT) {
+          s.last = Date.now();
+          sessionStorage.setItem(SESSION_KEY, JSON.stringify(s));
+          return { id: s.id, isNew: false };
+        }
+      }
+    } catch (e) {}
+    const id = Math.random().toString(36).slice(2) + Date.now().toString(36);
+    const isNew = !localStorage.getItem('rj_returning');
+    localStorage.setItem('rj_returning', '1');
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify({ id, last: Date.now() }));
+    send('sessions', { site, session_id: id, device: getDevice(), is_new: isNew, started_at: new Date().toISOString() });
+    return { id, isNew };
+  }
+
+  const session = getOrCreateSession();
+  const page    = window.location.pathname;
+  const startMs = Date.now();
+
+  send('pageviews', {
     site,
-    path: window.location.pathname,
+    page,
+    session_id: session.id,
     referrer: document.referrer || null,
     device: getDevice(),
-    new_session: isNewSession(),
-    returning: isReturning(),
-    ts: new Date().toISOString()
+    viewed_at: new Date().toISOString()
   });
 
-  // Track click-to-call
+  function trackEvent(type, meta) {
+    send('events', {
+      site, session_id: session.id,
+      event_type: type,
+      page,
+      meta: meta || null,
+      occurred_at: new Date().toISOString()
+    });
+  }
+
+  window.trackEvent = trackEvent;
+
   document.querySelectorAll('a[href^="tel:"]').forEach(el => {
-    el.addEventListener('click', () => {
-      post('events', {
-        site,
-        event: 'click_to_call',
-        path: window.location.pathname,
-        ts: new Date().toISOString()
-      });
-    });
+    el.addEventListener('click', () => trackEvent('click_to_call', { href: el.href }));
   });
 
-  // Track form submit button clicks
-  document.querySelectorAll('button[type="submit"], button.submit-btn').forEach(el => {
-    el.addEventListener('click', () => {
-      post('events', {
-        site,
-        event: 'form_submit_click',
-        path: window.location.pathname,
-        ts: new Date().toISOString()
-      });
-    });
-  });
+  const formSubmitBtn = document.getElementById('form-submit');
+  if (formSubmitBtn) {
+    formSubmitBtn.addEventListener('click', () => trackEvent('form_submit_click', { page }));
+  }
 
-  // Track session duration
-  const sessionStart = Date.now();
   window.addEventListener('beforeunload', () => {
-    const duration = Math.round((Date.now() - sessionStart) / 1000);
-    navigator.sendBeacon(`${SUPABASE_URL}/rest/v1/sessions`, JSON.stringify({
-      site,
-      path: window.location.pathname,
-      duration_seconds: duration,
-      ts: new Date().toISOString()
+    const duration = Math.round((Date.now() - startMs) / 1000);
+    navigator.sendBeacon(`${SUPABASE_URL}/rest/v1/events`, JSON.stringify({
+      site, session_id: session.id,
+      event_type: 'session_duration',
+      page,
+      meta: { seconds: duration },
+      occurred_at: new Date().toISOString()
     }));
   });
 })();
