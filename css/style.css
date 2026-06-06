@@ -253,7 +253,7 @@ nav a.active::after { transform: scaleX(1); }
   grid-template-columns: 1fr 1fr;
   align-items: center;
   padding-top: 6rem;
-  background: var(--cream);
+  background: linear-gradient(160deg, var(--coral-soft) 0%, var(--cream) 30%, var(--sea-salt-soft) 70%, var(--seafoam-soft) 100%);
   overflow: hidden;
   position: relative;
 }
@@ -269,7 +269,7 @@ nav a.active::after { transform: scaleX(1); }
 .hero-content {
   position: relative;
   z-index: 1;
-  padding: 4rem 4rem 4rem 0;
+  padding: 4rem 4rem 4rem 3rem;
 }
 .hero-title {
   font-size: clamp(3rem, 5.5vw, 5.2rem);
@@ -677,7 +677,7 @@ footer {
 
 /* ── PAGE HERO ── */
 .page-hero {
-  background: var(--cream);
+  background: linear-gradient(135deg, var(--coral-soft) 0%, var(--cream) 35%, var(--sea-salt-soft) 70%, var(--seafoam-soft) 100%);
   padding: 12rem 0 6rem;
   text-align: center;
   position: relative;
@@ -689,7 +689,7 @@ footer {
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   width: 600px; height: 600px;
-  background: radial-gradient(ellipse, rgba(201,94,63,0.07) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(201,94,63,0.13) 0%, transparent 70%);
   pointer-events: none;
 }
 .page-hero h1 { margin-bottom: 1rem; }
