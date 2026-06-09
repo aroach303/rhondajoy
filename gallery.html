@@ -4,12 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio Gallery | Joy Signature Designs | Crestview FL Interior Designer</title>
-  <meta name="description" content="Browse the portfolio of Joy Signature Designs — residential and commercial interior design, staging, color consulting, patios, and new construction projects in Crestview, FL." />
+  <meta name="description" content="Browse the portfolio of Joy Signature Designs residential and commercial interior design, staging, color consulting, patios, and new construction projects in Crestview, FL." />
   <meta property="og:title" content="Portfolio Gallery | Joy Signature Designs | Crestview FL" />
-  <meta property="og:description" content="Browse Joy Signature Designs portfolio — interior design, staging, color consulting, and more." />
+  <meta property="og:description" content="Browse Joy Signature Designs portfolio interior design, staging, color consulting, and more." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://joysignaturedesigns.com/gallery" />
   <meta property="og:image" content="https://joysignaturedesigns.com/images/gallery/living-room-1.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Joy Signature Designs | Interior Designer Crestview FL" />
+  <meta name="twitter:description" content="Residential and commercial interior design in Crestview, FL. Home Is Where Joy Resides." />
   <link rel="canonical" href="https://joysignaturedesigns.com/gallery" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -177,13 +180,27 @@
       .lightbox-next { right: 0.5rem; }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Portfolio Gallery | Joy Signature Designs | Crestview FL",
+    "url": "https://joysignaturedesigns.com/gallery",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Joy Signature Designs",
+      "url": "https://joysignaturedesigns.com"
+    }
+  }
+  </script>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to main content</a>
 
-<header>
+<header role="banner">
   <div class="container nav-inner">
     <a href="index.html" class="logo">Joy Signature<span>Designs</span></a>
-    <nav>
+    <nav role="navigation" aria-label="Main navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -193,11 +210,11 @@
         <li><a href="contact.html" class="btn btn-primary nav-cta">Book a Consult</a></li>
       </ul>
     </nav>
-    <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
-<nav class="mobile-nav" aria-label="Mobile navigation">
+<nav class="mobile-nav" role="navigation" aria-label="Mobile navigation" id="mobileMenu">
   <button class="close-menu" aria-label="Close menu">✕</button>
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
@@ -207,13 +224,13 @@
   <a href="contact.html" class="btn btn-primary">Book a Consult</a>
 </nav>
 
-<main>
+<main id="main" role="main">
 <section class="page-hero">
   <div class="container">
     <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Gallery</span></div>
     <span class="eyebrow">Our Work</span>
-    <h1>Portfolio & Gallery</h1>
-    <p>Every space tells a story. Browse a selection of Joy Signature Designs projects — from full room transformations to staging, patios, and new construction.</p>
+    <h1 fetchpriority="high" elementtiming="lcp-h1">Portfolio & Gallery</h1>
+    <p>Every space tells a story. Browse a selection of Joy Signature Designs projects from full room transformations to staging, patios, and new construction.</p>
   </div>
 </section>
 
@@ -334,11 +351,11 @@
         </div>
       </div>
 
-      <div class="gallery-item" data-category="living-room" data-title="Color Consult — Living Room" data-caption="Color Consulting">
+      <div class="gallery-item" data-category="living-room" data-title="Color Consult Living Room" data-caption="Color Consulting">
         <img src="images/gallery/living-room-3.webp" alt="Color consultation living room by Joy Signature Designs" loading="lazy" />
         <div class="gallery-overlay">
           <div class="gallery-overlay-text">
-            <strong>Color Consult — Living Room</strong>
+            <strong>Color Consult Living Room</strong>
             <span>Color Consulting</span>
           </div>
         </div>
@@ -371,12 +388,12 @@
 </section>
 </main>
 
-<footer>
+<footer role="contentinfo">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="logo">Joy Signature<span>Designs</span></div>
-        <p>Home Is Where Joy Resides — Residential &amp; Commercial Interior Design serving Crestview, FL and clients nationwide.</p>
+        <p>Home Is Where Joy Resides - Residential &amp; Commercial Interior Design serving Crestview, FL and clients nationwide.</p>
       </div>
       <div class="footer-col">
         <p class="footer-heading">Navigation</p>
