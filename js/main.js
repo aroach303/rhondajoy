@@ -1,8 +1,8 @@
 /* ============================================================
-   RHONDA JOY INTERIOR DESIGN — MAIN JS
+   JOY SIGNATURE DESIGNS — MAIN JS
+   Blueprint compliant: no inline handlers, null-safe, aria support
    ============================================================ */
 
-// Mark JS as loaded so reveal animations activate
 document.body.classList.add('js-loaded');
 
 // ── HEADER SCROLL ──
@@ -14,19 +14,28 @@ if (header) {
 }
 
 // ── MOBILE NAV ──
-const hamburger = document.querySelector('.hamburger');
-const mobileNav = document.querySelector('.mobile-nav');
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileMenu');
 const closeMenu = document.querySelector('.close-menu');
 
 if (hamburger && mobileNav) {
-  hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
 }
 if (closeMenu && mobileNav) {
-  closeMenu.addEventListener('click', () => mobileNav.classList.remove('open'));
+  closeMenu.addEventListener('click', () => {
+    mobileNav.classList.remove('open');
+    if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+  });
 }
 if (mobileNav) {
   mobileNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => mobileNav.classList.remove('open'));
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+    });
   });
 }
 
@@ -36,21 +45,23 @@ document.querySelectorAll('nav a, .mobile-nav a').forEach(link => {
   const href = link.getAttribute('href');
   if (href === currentPage || (currentPage === '' && href === 'index.html')) {
     link.classList.add('active');
+    link.setAttribute('aria-current', 'page');
   }
 });
 
 // ── SCROLL REVEAL ──
 const reveals = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-
-reveals.forEach(el => revealObserver.observe(el));
+if (reveals.length) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => revealObserver.observe(el));
+}
 
 // ── CONTACT FORM ──
 const submitBtn = document.getElementById('form-submit');
@@ -62,6 +73,7 @@ if (submitBtn) {
     const service = document.getElementById('service')?.value?.trim();
     const message = document.getElementById('message')?.value?.trim();
     const msgBox  = document.getElementById('form-message');
+    if (!msgBox) return;
 
     if (!name || !email || !message) {
       msgBox.className = 'form-message error';
@@ -78,7 +90,6 @@ if (submitBtn) {
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({ name, phone, email, service, message })
       });
-
       if (res.ok) {
         msgBox.className = 'form-message success';
         msgBox.textContent = 'Thank you! Rhonda will be in touch with you shortly.';
@@ -99,9 +110,9 @@ if (submitBtn) {
   });
 }
 
-// ── TEL LINK TRACKING ──
+// ── TEL TRACKING ──
 document.querySelectorAll('a[href^="tel:"]').forEach(link => {
   link.addEventListener('click', () => {
-    if (typeof trackEvent === 'function') trackEvent('click_to_call', { page: currentPage });
+    if (typeof trackEvent === 'function') trackEvent('click_to_call', {});
   });
 });
