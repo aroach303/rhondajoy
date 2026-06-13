@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio Gallery | Joy Signature Designs | Crestview FL Interior Designer</title>
-  <meta name="description" content="Browse the portfolio of Joy Signature Designs residential and commercial interior design, staging, color consulting, patios, and new construction projects in Crestview, FL." />
+  <meta name="description" content="Browse the portfolio of Joy Signature Designs. Residential and commercial interior design, staging, color consulting, patios, and new construction projects in Crestview, FL." />
   <meta property="og:title" content="Portfolio Gallery | Joy Signature Designs | Crestview FL" />
-  <meta property="og:description" content="Browse Joy Signature Designs portfolio interior design, staging, color consulting, and more." />
+  <meta property="og:description" content="Browse Joy Signature Designs portfolio. Interior design, staging, color consulting, and more." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://joysignaturedesigns.com/gallery" />
   <meta property="og:image" content="https://joysignaturedesigns.com/images/gallery/living-room-1.webp" />
@@ -14,6 +14,19 @@
   <meta name="twitter:title" content="Joy Signature Designs | Interior Designer Crestview FL" />
   <meta name="twitter:description" content="Residential and commercial interior design in Crestview, FL. Home Is Where Joy Resides." />
   <link rel="canonical" href="https://joysignaturedesigns.com/gallery" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Portfolio Gallery | Joy Signature Designs | Crestview FL",
+    "url": "https://joysignaturedesigns.com/gallery",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Joy Signature Designs",
+      "url": "https://joysignaturedesigns.com"
+    }
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Allura&family=Jost:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'" />
@@ -21,86 +34,156 @@
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    /* ── GALLERY SPECIFIC STYLES ── */
-    .gallery-filters {
-      display: flex;
-      justify-content: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      margin-bottom: 3.5rem;
+    /* ── GALLERY PAGE SPECIFIC ── */
+    .category-nav {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: var(--off-white);
+      border-bottom: 1px solid rgba(17,17,17,0.08);
+      padding: 1rem 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
-    .filter-btn {
-      padding: 0.55rem 1.4rem;
+    .category-nav::-webkit-scrollbar { display: none; }
+    .category-nav-inner {
+      display: flex;
+      gap: 0.6rem;
+      padding: 0 2rem;
+      min-width: max-content;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .category-link {
+      padding: 0.55rem 1.3rem;
       font-family: var(--font-body);
       font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      border: 1.5px solid rgba(44,40,37,0.15);
+      border: 1.5px solid rgba(17,17,17,0.12);
       border-radius: 100px;
-      background: transparent;
+      background: var(--white);
       color: var(--text);
       cursor: pointer;
       transition: all var(--transition);
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-block;
     }
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: var(--coral);
-      border-color: var(--coral);
+    .category-link:hover,
+    .category-link.active {
+      background: var(--black);
+      border-color: var(--black);
       color: var(--white);
     }
-    .gallery-grid {
-      columns: 3;
-      column-gap: 1.5rem;
+
+    .gallery-category-section {
+      padding: 4rem 0;
+      scroll-margin-top: 80px;
     }
-    .gallery-item {
-      break-inside: avoid;
-      margin-bottom: 1.5rem;
+    .gallery-category-section:nth-child(even) {
+      background: var(--white);
+    }
+    .gallery-category-header {
+      margin-bottom: 2rem;
+    }
+    .gallery-category-header h2 {
+      margin-bottom: 0.4rem;
+    }
+    .gallery-category-header p {
+      font-size: 0.95rem;
+    }
+
+    /* Horizontal scroll row */
+    .gallery-scroll-row {
+      display: flex;
+      gap: 1.25rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--taupe) var(--off-white);
+    }
+    .gallery-scroll-row::-webkit-scrollbar { height: 8px; }
+    .gallery-scroll-row::-webkit-scrollbar-track { background: var(--off-white); border-radius: 10px; }
+    .gallery-scroll-row::-webkit-scrollbar-thumb { background: var(--taupe); border-radius: 10px; }
+
+    .gallery-card {
+      flex: 0 0 auto;
+      width: 340px;
+      aspect-ratio: 4/3;
+      scroll-snap-align: start;
       border-radius: var(--radius-lg);
       overflow: hidden;
       position: relative;
       cursor: pointer;
       box-shadow: var(--shadow-soft);
+      background: var(--cream);
     }
-    .gallery-item img {
+    .gallery-card img {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
       transition: transform 0.5s ease;
     }
-    .gallery-item:hover img {
-      transform: scale(1.04);
-    }
-    .gallery-overlay {
+    .gallery-card:hover img { transform: scale(1.05); }
+    .gallery-card-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(44,40,37,0.75) 0%, transparent 60%);
+      background: linear-gradient(to top, rgba(17,17,17,0.7) 0%, transparent 55%);
       opacity: 0;
       transition: opacity var(--transition);
       display: flex;
       align-items: flex-end;
-      padding: 1.5rem;
+      padding: 1.2rem;
     }
-    .gallery-item:hover .gallery-overlay { opacity: 1; }
-    .gallery-overlay-text strong {
+    .gallery-card:hover .gallery-card-overlay { opacity: 1; }
+    .gallery-card-text strong {
       display: block;
       font-family: var(--font-display);
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: var(--white);
       font-weight: 400;
     }
-    .gallery-overlay-text span {
-      font-size: 0.72rem;
+    .gallery-card-text span {
+      font-size: 0.7rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--coral-light);
+      color: var(--taupe);
     }
+
+    /* Scroll hint arrows */
+    .scroll-hint {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .scroll-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(17,17,17,0.15);
+      background: var(--white);
+      color: var(--black);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .scroll-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
 
     /* Lightbox */
     .lightbox {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(20,16,14,0.95);
+      background: rgba(17,17,17,0.95);
       z-index: 200;
       align-items: center;
       justify-content: center;
@@ -163,36 +246,18 @@
       font-size: 0.72rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--coral-light);
+      color: var(--taupe);
     }
 
-    /* Hidden items when filtered */
-    .gallery-item.hidden {
-      display: none;
+    @media (max-width: 768px) {
+      .gallery-card { width: 280px; }
+      .gallery-category-section { padding: 3rem 0; }
+      .category-link { padding: 0.5rem 1rem; font-size: 0.68rem; }
     }
-
-    @media (max-width: 1024px) {
-      .gallery-grid { columns: 2; }
-    }
-    @media (max-width: 600px) {
-      .gallery-grid { columns: 1; }
-      .lightbox-prev { left: 0.5rem; }
-      .lightbox-next { right: 0.5rem; }
+    @media (max-width: 480px) {
+      .gallery-card { width: 240px; }
     }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Portfolio Gallery | Joy Signature Designs | Crestview FL",
-    "url": "https://joysignaturedesigns.com/gallery",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Joy Signature Designs",
-      "url": "https://joysignaturedesigns.com"
-    }
-  }
-  </script>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -207,7 +272,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="services.html">Services</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="gallery.html" class="active" aria-current="page">Gallery</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="contact.html" class="btn btn-primary nav-cta">Book a Consult</a></li>
       </ul>
@@ -234,150 +299,284 @@
 <main id="main" role="main">
 <section class="page-hero">
   <div class="container">
-    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Gallery</span></div>
     <span class="eyebrow">Our Work</span>
-    <h1 fetchpriority="high" elementtiming="lcp-h1">Portfolio & Gallery</h1>
-    <p>Every space tells a story. Browse a selection of Joy Signature Designs projects from full room transformations to staging, patios, and new construction.</p>
+    <h1 fetchpriority="high" elementtiming="lcp-h1">Portfolio &amp; Gallery</h1>
+    <p>Every space tells a story. Browse through projects by Joy Signature Designs, from full room transformations to staging, patios, and new construction. Tap a category below to jump right to it.</p>
   </div>
 </section>
 
-<section style="background: var(--white); padding: 5rem 0;">
+<!-- CATEGORY NAV -->
+<div class="category-nav">
+  <div class="category-nav-inner">
+    <a href="#cat-living-room" class="category-link">Living Rooms</a>
+    <a href="#cat-bedroom" class="category-link">Bedrooms</a>
+    <a href="#cat-kitchen" class="category-link">Kitchens</a>
+    <a href="#cat-dining" class="category-link">Dining</a>
+    <a href="#cat-entry" class="category-link">Entryways</a>
+    <a href="#cat-bathroom" class="category-link">Bathrooms</a>
+    <a href="#cat-staging" class="category-link">Staging</a>
+    <a href="#cat-outdoor" class="category-link">Patios &amp; Outdoor</a>
+    <a href="#cat-commercial" class="category-link">Commercial</a>
+  </div>
+</div>
+
+<!-- LIVING ROOMS -->
+<section class="gallery-category-section" id="cat-living-room">
   <div class="container">
-
-    <!-- FILTER BUTTONS -->
-    <div class="gallery-filters">
-      <button class="filter-btn active" data-filter="all">All Projects</button>
-      <button class="filter-btn" data-filter="living-room">Living Rooms</button>
-      <button class="filter-btn" data-filter="bedroom">Bedrooms</button>
-      <button class="filter-btn" data-filter="kitchen">Kitchen &amp; Dining</button>
-      <button class="filter-btn" data-filter="staging">Staging</button>
-      <button class="filter-btn" data-filter="outdoor">Patios &amp; Porches</button>
-      <button class="filter-btn" data-filter="commercial">Commercial</button>
+    <div class="gallery-category-header">
+      <span class="eyebrow">Full Room Design</span>
+      <h2>Living Rooms</h2>
+      <p>Comfortable, elegant spaces designed to be lived in and loved.</p>
     </div>
-
-    <!-- GALLERY GRID -->
-    <div class="gallery-grid" id="gallery-grid">
-
-      <div class="gallery-item" data-category="living-room" data-title="Living Room Redesign" data-caption="Full Room Design">
-        <img src="images/gallery/living-room-1.webp" alt="Living room interior design by Joy Signature Designs" loading="lazy" />
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text">
-            <strong>Living Room Redesign</strong>
-            <span>Full Room Design</span>
-          </div>
-        </div>
+    <div class="gallery-scroll-row" id="row-living-room">
+      <div class="gallery-card" data-title="Living Room Redesign" data-caption="Full Room Design">
+        <img src="images/gallery/living-room-1.webp" alt="Living room interior design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Living Room Redesign</strong><span>Full Room Design</span></div></div>
       </div>
-
-      <div class="gallery-item" data-category="bedroom" data-title="Master Bedroom Retreat" data-caption="Full Room Design">
-        <img src="images/gallery/bedroom-1.webp" alt="Master bedroom interior design by Joy Signature Designs" loading="lazy" />
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text">
-            <strong>Master Bedroom Retreat</strong>
-            <span>Full Room Design</span>
-          </div>
-        </div>
+      <div class="gallery-card" data-title="Open Concept Living" data-caption="Full Room Design">
+        <img src="images/gallery/living-room-2.webp" alt="Open concept living room design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Open Concept Living</strong><span>Full Room Design</span></div></div>
       </div>
-
-      <div class="gallery-item" data-category="staging" data-title="Home Staging for Sale" data-caption="Staging">
-        <img src="images/gallery/staging-1.webp" alt="Home staged for sale by Joy Signature Designs" loading="lazy" />
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text">
-            <strong>Home Staging for Sale</strong>
-            <span>Staging</span>
-          </div>
-        </div>
+      <div class="gallery-card" data-title="Color Consult, Living Room" data-caption="Color Consulting">
+        <img src="images/gallery/living-room-3.webp" alt="Color consultation living room by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Color Consult, Living Room</strong><span>Color Consulting</span></div></div>
       </div>
-
-      <div class="gallery-item" data-category="kitchen" data-title="Kitchen & Dining Refresh" data-caption="Color Consulting & Design">
-        <img src="images/gallery/kitchen-1.webp" alt="Kitchen and dining room design by Joy Signature Designs" loading="lazy" />
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text">
-            <strong>Kitchen &amp; Dining Refresh</strong>
-            <span>Color Consulting &amp; Design</span>
-          </div>
-        </div>
+      <div class="gallery-card" data-title="Family Room Refresh" data-caption="Full Room Design">
+        <img src="images/gallery/living-room-4.webp" alt="Family room interior design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Family Room Refresh</strong><span>Full Room Design</span></div></div>
       </div>
-
-      <div class="gallery-item" data-category="outdoor" data-title="Patio Transformation" data-caption="Patios & Porches">
-        <img src="images/gallery/patio-1.webp" alt="Patio design by Joy Signature Designs" loading="lazy" />
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text">
-            <strong>Patio Transformation</strong>
-            <span>Patios &amp; Porches</span>
-          </div>
-        </div>
+      <div class="gallery-card" data-title="Cozy Living Space" data-caption="Full Room Design">
+        <img src="images/gallery/living-room-5.webp" alt="Cozy living space design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Cozy Living Space</strong><span>Full Room Design</span></div></div>
       </div>
+    </div>
+    <div class="scroll-hint">
+      <button class="scroll-btn" data-scroll="row-living-room" data-dir="-1" aria-label="Scroll left">&#8592;</button>
+      <button class="scroll-btn" data-scroll="row-living-room" data-dir="1" aria-label="Scroll right">&#8594;</button>
+    </div>
+  </div>
+</section>
 
-      <div class="gallery-item" data-category="living-room" data-title="Open Concept Living" data-caption="Full Room Design">
-        <img src="images/gallery/living-room-2.webp" alt="Open concept living room design by Joy Signature Designs" loading="lazy" />
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text">
-            <strong>Open Concept Living</strong>
-            <span>Full Room Design</span>
-          </div>
-        </div>
+<!-- BEDROOMS -->
+<section class="gallery-category-section" id="cat-bedroom">
+  <div class="container">
+    <div class="gallery-category-header">
+      <span class="eyebrow">Full Room Design</span>
+      <h2>Bedrooms</h2>
+      <p>Restful retreats designed around comfort, color, and personal touches.</p>
+    </div>
+    <div class="gallery-scroll-row" id="row-bedroom">
+      <div class="gallery-card" data-title="Master Bedroom Retreat" data-caption="Full Room Design">
+        <img src="images/gallery/bedroom-1.webp" alt="Master bedroom interior design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Master Bedroom Retreat</strong><span>Full Room Design</span></div></div>
       </div>
-
-      <div class="gallery-item" data-category="staging" data-title="Airbnb Staging" data-caption="Staging">
-        <img src="images/gallery/staging-2.webp" alt="Airbnb staging by Joy Signature Designs" loading="lazy" />
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text">
-            <strong>Airbnb Staging</strong>
-            <span>Staging</span>
-          </div>
-        </div>
+      <div class="gallery-card" data-title="Guest Bedroom Design" data-caption="Full Room Design">
+        <img src="images/gallery/bedroom-2.webp" alt="Guest bedroom design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Guest Bedroom Design</strong><span>Full Room Design</span></div></div>
       </div>
-
-      <div class="gallery-item" data-category="bedroom" data-title="Guest Bedroom Design" data-caption="Full Room Design">
-        <img src="images/gallery/bedroom-2.webp" alt="Guest bedroom design by Joy Signature Designs" loading="lazy" />
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text">
-            <strong>Guest Bedroom Design</strong>
-            <span>Full Room Design</span>
-          </div>
-        </div>
+      <div class="gallery-card" data-title="Coastal Bedroom Refresh" data-caption="Color Consulting">
+        <img src="images/gallery/bedroom-3.webp" alt="Coastal bedroom design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Coastal Bedroom Refresh</strong><span>Color Consulting</span></div></div>
       </div>
-
-      <div class="gallery-item" data-category="commercial" data-title="Commercial Office Space" data-caption="Commercial Design">
-        <img src="images/gallery/commercial-1.webp" alt="Commercial office interior design by Joy Signature Designs" loading="lazy" />
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text">
-            <strong>Commercial Office Space</strong>
-            <span>Commercial Design</span>
-          </div>
-        </div>
+      <div class="gallery-card" data-title="Media &amp; Lounge Bedroom" data-caption="Full Room Design">
+        <img src="images/gallery/bedroom-4.webp" alt="Bedroom with media setup design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Media &amp; Lounge Bedroom</strong><span>Full Room Design</span></div></div>
       </div>
+    </div>
+    <div class="scroll-hint">
+      <button class="scroll-btn" data-scroll="row-bedroom" data-dir="-1" aria-label="Scroll left">&#8592;</button>
+      <button class="scroll-btn" data-scroll="row-bedroom" data-dir="1" aria-label="Scroll right">&#8594;</button>
+    </div>
+  </div>
+</section>
 
-      <div class="gallery-item" data-category="outdoor" data-title="Porch Redesign" data-caption="Patios & Porches">
-        <img src="images/gallery/patio-2.webp" alt="Porch redesign by Joy Signature Designs" loading="lazy" />
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text">
-            <strong>Porch Redesign</strong>
-            <span>Patios &amp; Porches</span>
-          </div>
-        </div>
+<!-- KITCHENS -->
+<section class="gallery-category-section" id="cat-kitchen">
+  <div class="container">
+    <div class="gallery-category-header">
+      <span class="eyebrow">Color Consulting &amp; Design</span>
+      <h2>Kitchens</h2>
+      <p>The heart of the home, designed for both gathering and getting things done.</p>
+    </div>
+    <div class="gallery-scroll-row" id="row-kitchen">
+      <div class="gallery-card" data-title="Kitchen Refresh" data-caption="Color Consulting &amp; Design">
+        <img src="images/gallery/kitchen-1.webp" alt="Kitchen design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Kitchen Refresh</strong><span>Color Consulting &amp; Design</span></div></div>
       </div>
-
-      <div class="gallery-item" data-category="living-room" data-title="Color Consult Living Room" data-caption="Color Consulting">
-        <img src="images/gallery/living-room-3.webp" alt="Color consultation living room by Joy Signature Designs" loading="lazy" />
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text">
-            <strong>Color Consult Living Room</strong>
-            <span>Color Consulting</span>
-          </div>
-        </div>
+      <div class="gallery-card" data-title="Open Kitchen Layout" data-caption="Full Room Design">
+        <img src="images/gallery/kitchen-2.webp" alt="Open kitchen layout design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Open Kitchen Layout</strong><span>Full Room Design</span></div></div>
       </div>
-
-      <div class="gallery-item" data-category="staging" data-title="Condo Staging" data-caption="Staging">
-        <img src="images/gallery/staging-3.webp" alt="Condo staging by Joy Signature Designs" loading="lazy" />
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text">
-            <strong>Condo Staging</strong>
-            <span>Staging</span>
-          </div>
-        </div>
+      <div class="gallery-card" data-title="Kitchen Island Styling" data-caption="Color Consulting">
+        <img src="images/gallery/kitchen-3.webp" alt="Kitchen island styling by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Kitchen Island Styling</strong><span>Color Consulting</span></div></div>
       </div>
+    </div>
+    <div class="scroll-hint">
+      <button class="scroll-btn" data-scroll="row-kitchen" data-dir="-1" aria-label="Scroll left">&#8592;</button>
+      <button class="scroll-btn" data-scroll="row-kitchen" data-dir="1" aria-label="Scroll right">&#8594;</button>
+    </div>
+  </div>
+</section>
 
+<!-- DINING -->
+<section class="gallery-category-section" id="cat-dining">
+  <div class="container">
+    <div class="gallery-category-header">
+      <span class="eyebrow">Full Room Design</span>
+      <h2>Dining Rooms</h2>
+      <p>Spaces made for gathering, set with intention down to the last detail.</p>
+    </div>
+    <div class="gallery-scroll-row" id="row-dining">
+      <div class="gallery-card" data-title="Formal Dining Refresh" data-caption="Full Room Design">
+        <img src="images/gallery/dining-1.webp" alt="Dining room design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Formal Dining Refresh</strong><span>Full Room Design</span></div></div>
+      </div>
+      <div class="gallery-card" data-title="Dining Table Styling" data-caption="Color Consulting">
+        <img src="images/gallery/dining-2.webp" alt="Dining table styling by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Dining Table Styling</strong><span>Color Consulting</span></div></div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <button class="scroll-btn" data-scroll="row-dining" data-dir="-1" aria-label="Scroll left">&#8592;</button>
+      <button class="scroll-btn" data-scroll="row-dining" data-dir="1" aria-label="Scroll right">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ENTRYWAYS -->
+<section class="gallery-category-section" id="cat-entry">
+  <div class="container">
+    <div class="gallery-category-header">
+      <span class="eyebrow">First Impressions</span>
+      <h2>Entryways</h2>
+      <p>The first thing your guests see, designed to welcome them home.</p>
+    </div>
+    <div class="gallery-scroll-row" id="row-entry">
+      <div class="gallery-card" data-title="Front Entry Refresh" data-caption="Full Room Design">
+        <img src="images/gallery/entry-1.webp" alt="Front entry design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Front Entry Refresh</strong><span>Full Room Design</span></div></div>
+      </div>
+      <div class="gallery-card" data-title="Welcoming Entryway" data-caption="Color Consulting">
+        <img src="images/gallery/entry-2.webp" alt="Welcoming entryway design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Welcoming Entryway</strong><span>Color Consulting</span></div></div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <button class="scroll-btn" data-scroll="row-entry" data-dir="-1" aria-label="Scroll left">&#8592;</button>
+      <button class="scroll-btn" data-scroll="row-entry" data-dir="1" aria-label="Scroll right">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- BATHROOMS -->
+<section class="gallery-category-section" id="cat-bathroom">
+  <div class="container">
+    <div class="gallery-category-header">
+      <span class="eyebrow">Color Consulting &amp; Design</span>
+      <h2>Bathrooms</h2>
+      <p>Spa-like spaces designed for everyday comfort.</p>
+    </div>
+    <div class="gallery-scroll-row" id="row-bathroom">
+      <div class="gallery-card" data-title="Bathroom Refresh" data-caption="Color Consulting &amp; Design">
+        <img src="images/gallery/bathroom-1.webp" alt="Bathroom design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Bathroom Refresh</strong><span>Color Consulting &amp; Design</span></div></div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <button class="scroll-btn" data-scroll="row-bathroom" data-dir="-1" aria-label="Scroll left">&#8592;</button>
+      <button class="scroll-btn" data-scroll="row-bathroom" data-dir="1" aria-label="Scroll right">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- STAGING -->
+<section class="gallery-category-section" id="cat-staging">
+  <div class="container">
+    <div class="gallery-category-header">
+      <span class="eyebrow">Staging</span>
+      <h2>Staging for Sale, Airbnb &amp; Rentals</h2>
+      <p>Spaces prepared to make the best possible first impression for buyers and guests.</p>
+    </div>
+    <div class="gallery-scroll-row" id="row-staging">
+      <div class="gallery-card" data-title="Home Staging for Sale" data-caption="Staging">
+        <img src="images/gallery/staging-1.webp" alt="Home staged for sale by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Home Staging for Sale</strong><span>Staging</span></div></div>
+      </div>
+      <div class="gallery-card" data-title="Airbnb Staging" data-caption="Staging">
+        <img src="images/gallery/staging-2.webp" alt="Airbnb staging by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Airbnb Staging</strong><span>Staging</span></div></div>
+      </div>
+      <div class="gallery-card" data-title="Condo Staging" data-caption="Staging">
+        <img src="images/gallery/staging-3.webp" alt="Condo staging by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Condo Staging</strong><span>Staging</span></div></div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <button class="scroll-btn" data-scroll="row-staging" data-dir="-1" aria-label="Scroll left">&#8592;</button>
+      <button class="scroll-btn" data-scroll="row-staging" data-dir="1" aria-label="Scroll right">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- PATIOS / OUTDOOR -->
+<section class="gallery-category-section" id="cat-outdoor">
+  <div class="container">
+    <div class="gallery-category-header">
+      <span class="eyebrow">Patios &amp; Porches</span>
+      <h2>Outdoor &amp; Patio Spaces</h2>
+      <p>Outdoor living designed to be just as beautiful and functional as the inside.</p>
+    </div>
+    <div class="gallery-scroll-row" id="row-outdoor">
+      <div class="gallery-card" data-title="Patio Transformation" data-caption="Patios &amp; Porches">
+        <img src="images/gallery/patio-1.webp" alt="Patio design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Patio Transformation</strong><span>Patios &amp; Porches</span></div></div>
+      </div>
+      <div class="gallery-card" data-title="Porch Redesign" data-caption="Patios &amp; Porches">
+        <img src="images/gallery/patio-2.webp" alt="Porch redesign by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Porch Redesign</strong><span>Patios &amp; Porches</span></div></div>
+      </div>
+      <div class="gallery-card" data-title="Outdoor Lounge Area" data-caption="Patios &amp; Porches">
+        <img src="images/gallery/patio-3.webp" alt="Outdoor lounge design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Outdoor Lounge Area</strong><span>Patios &amp; Porches</span></div></div>
+      </div>
+      <div class="gallery-card" data-title="Covered Patio Design" data-caption="Patios &amp; Porches">
+        <img src="images/gallery/patio-4.webp" alt="Covered patio design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Covered Patio Design</strong><span>Patios &amp; Porches</span></div></div>
+      </div>
+      <div class="gallery-card" data-title="Pool &amp; Outdoor Living" data-caption="Patios &amp; Porches">
+        <img src="images/gallery/outdoor-1.webp" alt="Pool and outdoor living design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Pool &amp; Outdoor Living</strong><span>Patios &amp; Porches</span></div></div>
+      </div>
+      <div class="gallery-card" data-title="Garden Patio Styling" data-caption="Patios &amp; Porches">
+        <img src="images/gallery/outdoor-2.webp" alt="Garden patio styling by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Garden Patio Styling</strong><span>Patios &amp; Porches</span></div></div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <button class="scroll-btn" data-scroll="row-outdoor" data-dir="-1" aria-label="Scroll left">&#8592;</button>
+      <button class="scroll-btn" data-scroll="row-outdoor" data-dir="1" aria-label="Scroll right">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- COMMERCIAL -->
+<section class="gallery-category-section" id="cat-commercial">
+  <div class="container">
+    <div class="gallery-category-header">
+      <span class="eyebrow">Commercial Design</span>
+      <h2>Commercial Spaces</h2>
+      <p>Professional environments designed with the same care and personality as a home.</p>
+    </div>
+    <div class="gallery-scroll-row" id="row-commercial">
+      <div class="gallery-card" data-title="Commercial Office Space" data-caption="Commercial Design">
+        <img src="images/gallery/commercial-1.webp" alt="Commercial office interior design by Joy Signature Designs" loading="lazy" width="1000" height="666" />
+        <div class="gallery-card-overlay"><div class="gallery-card-text"><strong>Commercial Office Space</strong><span>Commercial Design</span></div></div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <button class="scroll-btn" data-scroll="row-commercial" data-dir="-1" aria-label="Scroll left">&#8592;</button>
+      <button class="scroll-btn" data-scroll="row-commercial" data-dir="1" aria-label="Scroll right">&#8594;</button>
     </div>
   </div>
 </section>
@@ -389,7 +588,7 @@
     <p>Your space could be next. Book a free consultation and let's talk about your vision.</p>
     <div class="cta-actions">
       <a href="contact.html" class="btn btn-primary">Book Your Free Consult</a>
-      <a href="tel:+18504452682" class="btn btn-white">📞 (850) 445-2682</a>
+      <a href="tel:+18504452682" class="btn btn-white">Call (850) 445-2682</a>
     </div>
   </div>
 </section>
@@ -402,7 +601,7 @@
         <a href="index.html" aria-label="Joy Signature Designs home">
           <img src="images/logo-white.svg" alt="Joy Signature Designs" class="footer-logo" width="96" height="96" />
         </a>
-        <p>Home Is Where Joy Resides - Residential &amp; Commercial Interior Design serving Crestview, FL and clients nationwide.</p>
+        <p>"Home Is Where Joy Resides" Serving Crestview and the Emerald Coast in person, and clients nationwide virtually.</p>
       </div>
       <div class="footer-col">
         <p class="footer-heading">Navigation</p>
@@ -438,6 +637,7 @@
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 Joy Signature Designs. All rights reserved.</p>
+      <p><a href="https://www.instagram.com/joysignaturedesigns" target="_blank" rel="noopener">@joysignaturedesigns</a> on Instagram</p>
       <p class="footer-credit">Website built by <a href="https://hiretheaiguy.com" target="_blank" rel="noopener">The AI Guy</a></p>
     </div>
   </div>
@@ -457,112 +657,101 @@
 
 <script src="js/main.js"></script>
 <script>
+  // ── HORIZONTAL SCROLL BUTTONS ──
+  document.querySelectorAll('.scroll-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const row = document.getElementById(btn.getAttribute('data-scroll'));
+      const dir = parseInt(btn.getAttribute('data-dir'), 10);
+      row.scrollBy({ left: dir * 360, behavior: 'smooth' });
+    });
+  });
+
+  // ── CATEGORY NAV ACTIVE STATE ──
+  const categoryLinks = document.querySelectorAll('.category-link');
+  const categorySections = document.querySelectorAll('.gallery-category-section');
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        categoryLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+
+  categorySections.forEach(section => sectionObserver.observe(section));
+
+  // ── LIGHTBOX ──
+  const lightbox      = document.getElementById('lightbox');
+  const lightboxImg   = document.getElementById('lightbox-img');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxCap   = document.getElementById('lightbox-caption');
+  const closeBtn      = document.getElementById('lightbox-close');
+  const prevBtn       = document.getElementById('lightbox-prev');
+  const nextBtn       = document.getElementById('lightbox-next');
+
+  const allCards = Array.from(document.querySelectorAll('.gallery-card'));
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    updateLightbox();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function updateLightbox() {
+    const card = allCards[currentIndex];
+    const img  = card.querySelector('img');
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightboxTitle.textContent = card.getAttribute('data-title');
+    lightboxCap.textContent   = card.getAttribute('data-caption');
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  allCards.forEach((card, i) => {
+    card.addEventListener('click', () => openLightbox(i));
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  prevBtn.addEventListener('click', () => { currentIndex = (currentIndex - 1 + allCards.length) % allCards.length; updateLightbox(); });
+  nextBtn.addEventListener('click', () => { currentIndex = (currentIndex + 1) % allCards.length; updateLightbox(); });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + allCards.length) % allCards.length; updateLightbox(); }
+    if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % allCards.length; updateLightbox(); }
+  });
+
+  // ── SUPABASE OVERRIDE (admin uploaded photos take priority) ──
   const SUPABASE_URL  = 'https://ltmufkugsqlksnbrxfcw.supabase.co';
   const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx0bXVma3Vnc3Fsa3NuYnJ4ZmN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA2OTM2NzQsImV4cCI6MjA5NjI2OTY3NH0.y6WOM-p8LcXXKGgr95ucfCDRM1yAcj3aVHktrYelOjs';
   const BUCKET = 'gallery';
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
-  async function loadGalleryFromSupabase() {
+  async function applySupabaseOverrides() {
     const { data, error } = await sb.storage.from(BUCKET).list('', { limit: 100 });
     if (error || !data) return;
-
     const liveFiles = data.map(f => f.name.replace(/\.[^.]+$/, ''));
 
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      const img  = item.querySelector('img');
+    allCards.forEach(card => {
+      const img  = card.querySelector('img');
       const slot = img.getAttribute('src').split('/').pop().replace(/\.[^.]+$/, '');
       if (liveFiles.includes(slot)) {
         const { data: urlData } = sb.storage.from(BUCKET).getPublicUrl(slot + '.webp');
         img.src = urlData.publicUrl;
       }
-      // Otherwise keep the local fallback image already in the HTML
     });
   }
 
-  loadGalleryFromSupabase();
+  applySupabaseOverrides();
 </script>
-<script>
-// ── GALLERY FILTER ──
-const filterBtns = document.querySelectorAll('.filter-btn');
-const galleryItems = document.querySelectorAll('.gallery-item');
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const filter = btn.getAttribute('data-filter');
-    galleryItems.forEach(item => {
-      if (filter === 'all' || item.getAttribute('data-category') === filter) {
-        item.classList.remove('hidden');
-      } else {
-        item.classList.add('hidden');
-      }
-    });
-  });
-});
-
-// ── LIGHTBOX ──
-const lightbox     = document.getElementById('lightbox');
-const lightboxImg  = document.getElementById('lightbox-img');
-const lightboxTitle = document.getElementById('lightbox-title');
-const lightboxCap  = document.getElementById('lightbox-caption');
-const closeBtn     = document.getElementById('lightbox-close');
-const prevBtn      = document.getElementById('lightbox-prev');
-const nextBtn      = document.getElementById('lightbox-next');
-
-let currentIndex = 0;
-let visibleItems = [];
-
-function openLightbox(index) {
-  visibleItems = [...document.querySelectorAll('.gallery-item:not(.hidden)')];
-  currentIndex = index;
-  updateLightbox();
-  lightbox.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function updateLightbox() {
-  const item = visibleItems[currentIndex];
-  const img  = item.querySelector('img');
-  lightboxImg.src = img.src;
-  lightboxImg.alt = img.alt;
-  lightboxTitle.textContent = item.getAttribute('data-title');
-  lightboxCap.textContent   = item.getAttribute('data-caption');
-}
-
-function closeLightbox() {
-  lightbox.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-galleryItems.forEach((item, i) => {
-  item.addEventListener('click', () => {
-    visibleItems = [...document.querySelectorAll('.gallery-item:not(.hidden)')];
-    const visibleIndex = visibleItems.indexOf(item);
-    openLightbox(visibleIndex);
-  });
-});
-
-closeBtn.addEventListener('click', closeLightbox);
-lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-
-prevBtn.addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
-  updateLightbox();
-});
-
-nextBtn.addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % visibleItems.length;
-  updateLightbox();
-});
-
-document.addEventListener('keydown', (e) => {
-  if (!lightbox.classList.contains('open')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length; updateLightbox(); }
-  if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % visibleItems.length; updateLightbox(); }
-});
-</script>
-<script src="/js/analytics.js" data-site="joysignaturedesigns.com"></script>
 </body>
 </html>
