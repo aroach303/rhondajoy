@@ -120,11 +120,12 @@ section { padding: 7rem 0; }
 }
 .btn-primary {
   background: var(--black);
-  color: var(--white);
+  color: var(--sea-salt);
   box-shadow: 0 4px 16px rgba(17,17,17,0.2);
 }
 .btn-primary:hover {
   background: var(--taupe-dark);
+  color: var(--white);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(17,17,17,0.25);
 }
@@ -279,6 +280,10 @@ nav a.active::after { transform: scaleX(1); }
 .mobile-nav a.btn {
   font-family: var(--font-body);
   font-size: 0.78rem;
+  color: var(--sea-salt);
+}
+.mobile-nav a.btn:hover {
+  color: var(--white);
 }
 .mobile-nav a:hover { color: var(--sea-salt-dark); }
 .close-menu {
