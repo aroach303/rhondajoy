@@ -997,16 +997,18 @@ footer {
 .hero-slideshow {
   position: relative;
   overflow: hidden;
+  height: 100vh;
 }
 .hero-slideshow .slide {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 1.2s ease-in-out;
+  transition: opacity 1.4s ease-in-out;
+  z-index: 0;
 }
 .hero-slideshow .slide.active {
   opacity: 1;
-  position: relative;
+  z-index: 1;
 }
 .hero-slideshow .slide img {
   width: 100%;
@@ -1014,4 +1016,8 @@ footer {
   object-fit: cover;
   object-position: center;
   display: block;
+}
+.hero-slideshow .hero-badge {
+  position: absolute;
+  z-index: 2;
 }
