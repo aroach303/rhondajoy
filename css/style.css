@@ -77,9 +77,13 @@ p  { font-size: 1.05rem; color: var(--text-light); line-height: 1.9; }
 
 .script-name {
   font-family: var(--font-script);
-  font-size: 1.5em;
-  color: var(--black);
+  font-size: 1.4em;
+  color: inherit;
   font-weight: 400;
+}
+.footer-bottom .script-name,
+.cta-banner .script-name {
+  color: inherit;
 }
 
 .eyebrow {
@@ -979,7 +983,7 @@ footer {
 /* ── FEATURED LOGO SECTION (index page) ── */
 .featured-logo-section {
   background: var(--off-white);
-  padding: 4rem 0 2rem;
+  padding: 7rem 0 2rem;
   text-align: center;
 }
 .featured-logo-section img {
