@@ -78,12 +78,12 @@ p  { font-size: 1.05rem; color: var(--text-light); line-height: 1.9; }
 .script-name {
   font-family: var(--font-script);
   font-size: 1.4em;
-  color: inherit;
+  color: var(--taupe);
   font-weight: 400;
 }
 .footer-bottom .script-name,
 .cta-banner .script-name {
-  color: inherit;
+  color: var(--taupe);
 }
 
 .eyebrow {
