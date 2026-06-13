@@ -116,3 +116,15 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
     if (typeof trackEvent === 'function') trackEvent('click_to_call', {});
   });
 });
+
+// ── HERO SLIDESHOW ──
+(function() {
+  const slides = document.querySelectorAll('.hero-slideshow .slide');
+  if (!slides.length) return;
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 4000);
+})();
