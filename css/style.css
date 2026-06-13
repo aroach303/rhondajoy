@@ -172,7 +172,7 @@ header {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  padding: 1rem 0;
+  padding: 0.75rem 0;
   background: rgba(250,249,247,0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -180,7 +180,7 @@ header {
   transition: all var(--transition);
 }
 header.scrolled {
-  padding: 0.7rem 0;
+  padding: 0.5rem 0;
   box-shadow: var(--shadow-soft);
 }
 .nav-inner {
@@ -194,7 +194,7 @@ header.scrolled {
   align-items: center;
 }
 .logo-img {
-  height: 85px;
+  height: 110px;
   width: auto;
   display: block;
 }
@@ -304,7 +304,7 @@ nav a.active::after { transform: scaleX(1); }
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  padding-top: 7.5rem;
+  padding-top: 8.5rem;
   background: linear-gradient(160deg, var(--taupe-soft) 0%, var(--cream) 35%, var(--taupe-soft) 70%, var(--cream) 100%);
   overflow: hidden;
   position: relative;
@@ -767,7 +767,7 @@ footer {
 /* ── PAGE HERO ── */
 .page-hero {
   background: linear-gradient(135deg, var(--taupe-soft) 0%, var(--cream) 40%, var(--taupe-soft) 100%);
-  padding: 13rem 0 6rem;
+  padding: 14rem 0 6rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -960,7 +960,7 @@ footer {
   /* 1. Title/tagline first */
   .hero-content {
     order: 1;
-    padding: 2rem 1.5rem 1.5rem;
+    padding: 1.2rem 1.5rem 0.8rem;
     text-align: center;
   }
   /* Hide sub text and buttons - move them below slideshow */
@@ -1006,7 +1006,7 @@ footer {
   .contact-grid { grid-template-columns: 1fr; }
   nav ul { display: none; }
   .hamburger { display: flex; }
-  .logo-img { height: 70px; }
+  .logo-img { height: 85px; }
 }
 @media (max-width: 768px) {
   section { padding: 5rem 0; }
@@ -1025,11 +1025,11 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .logo-img { height: 56px; }
+  .logo-img { height: 65px; }
 }
 @media (max-width: 480px) {
   h1 { font-size: 2.5rem; }
-  .hero-title { font-size: 2.5rem; }
+  .hero-title { font-size: 2.4rem; margin-bottom: 0.8rem; }
   .process-steps { grid-template-columns: 1fr; }
   .about-stats { grid-template-columns: repeat(3, 1fr); }
 }
