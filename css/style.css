@@ -1031,7 +1031,7 @@ footer {
   .contact-grid { grid-template-columns: 1fr; }
   nav ul { display: none; }
   .hamburger { display: flex; }
-  .logo-img { height: 85px; }
+  .logo-img { height: 150px; }
 }
 @media (max-width: 768px) {
   section { padding: 5rem 0; }
@@ -1050,7 +1050,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .logo-img { height: 65px; }
+  .logo-img { height: 120px; }
 }
 @media (max-width: 480px) {
   h1 { font-size: 2.5rem; }
