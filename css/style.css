@@ -992,18 +992,6 @@ footer {
   .about-stats { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* ── FEATURED LOGO SECTION (index page) ── */
-.featured-logo-section {
-  background: var(--off-white);
-  padding: 7rem 0 2rem;
-  text-align: center;
-}
-.featured-logo-section img {
-  max-width: 260px;
-  width: 100%;
-  height: auto;
-  margin: 0 auto;
-}
 
 /* ── HERO SLIDESHOW ── */
 .hero-slideshow {
