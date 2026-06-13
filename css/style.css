@@ -347,6 +347,7 @@ nav a.active::after { transform: scaleX(1); }
   margin-bottom: 0.4rem;
   contain: layout;
   font-weight: 600;
+  text-align: center;
 }
 .hero-title em {
   font-style: italic;
@@ -973,15 +974,19 @@ footer {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     min-height: auto;
-    padding-top: 9rem;
+    padding-top: 0;
   }
   .hero::before { display: none; }
 
   /* 1. Title/tagline first */
   .hero-content {
     order: 1;
-    padding: 0.4rem 1.5rem 0.3rem;
+    padding: 8rem 1.5rem 0.5rem;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   /* Hide sub text and buttons - move them below slideshow */
   .hero-sub { display: none; }
