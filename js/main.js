@@ -122,9 +122,20 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
   const slides = document.querySelectorAll('.hero-slideshow .slide');
   if (!slides.length) return;
   let current = 0;
-  setInterval(() => {
-    slides[current].classList.remove('active');
+  let transitioning = false;
+
+  function nextSlide() {
+    if (transitioning) return;
+    transitioning = true;
+    const prev = current;
     current = (current + 1) % slides.length;
     slides[current].classList.add('active');
-  }, 4000);
+    // After transition completes, remove active from previous
+    setTimeout(() => {
+      slides[prev].classList.remove('active');
+      transitioning = false;
+    }, 1400);
+  }
+
+  setInterval(nextSlide, 4500);
 })();
