@@ -191,7 +191,27 @@ header.scrolled {
 .nav-logo-left {
   flex-shrink: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  gap: 0.3rem;
+}
+.logo-llc {
+  font-family: var(--font-body);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--taupe-dark);
+  padding-bottom: 0.5rem;
+  line-height: 1;
+}
+.logo-llc-mobile {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--taupe-dark);
+  margin-top: 0.3rem;
+  display: block;
+  text-align: center;
 }
 .logo-img {
   height: 110px;
