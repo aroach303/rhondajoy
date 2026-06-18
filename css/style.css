@@ -540,8 +540,21 @@ nav a.active::after { transform: scaleX(1); }
 }
 .credential-card:hover {
   background: rgba(255,255,255,0.09);
-  border-color: var(--taupe);
+  border-color: var(--sea-salt);
   transform: translateY(-4px);
+}
+.credential-card::before {
+  content: '';
+  display: block;
+  height: 2px;
+  background: var(--sea-salt);
+  border-radius: 2px 2px 0 0;
+  margin: -2rem -1.8rem 1.5rem;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.credential-card:hover::before {
+  opacity: 1;
 }
 .credential-icon { font-size: 1.8rem; margin-bottom: 1rem; }
 .credential-card h4 {
@@ -594,7 +607,7 @@ nav a.active::after { transform: scaleX(1); }
   font-size: 1.4rem;
   margin-bottom: 1.5rem;
 }
-.icon-sea   { background: var(--taupe-soft); }
+.icon-sea   { background: var(--sea-salt-soft); }
 .icon-taupe { background: var(--taupe-soft); }
 .icon-sage  { background: var(--sage); }
 .service-card h3 { font-size: 1.3rem; margin-bottom: 0.8rem; }
