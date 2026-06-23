@@ -50,6 +50,15 @@ nav a{font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:upperc
 .skip-link:focus{top:1rem}
 @media(max-width:1024px){nav ul{display:none}.hamburger{display:flex}.logo-img{height:150px}}
 .script-name{font-family:'Allura',cursive;font-size:1.4em;color:#7D6453;font-weight:400}
+.before-after-section{padding:5rem 0;background:#F5F2EE}
+.ba-grid{display:flex;flex-direction:column;gap:3rem}
+.ba-pair{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1.5rem}
+.ba-card{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+.ba-card img{width:100%;height:280px;object-fit:cover;display:block}
+.ba-label{position:absolute;top:1rem;left:1rem;background:rgba(0,0,0,0.6);color:#fff;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0.3rem 0.75rem;border-radius:4px}
+.ba-label.after{background:#7D6453}
+.ba-arrow{font-size:2rem;color:#7D6453;text-align:center;flex-shrink:0}
+@media(max-width:768px){.ba-pair{grid-template-columns:1fr;}.ba-arrow{transform:rotate(90deg);text-align:center}.ba-card img{height:220px}}
 </style>
   <link rel="stylesheet" href="/css/style.css" />
   <script type="application/ld+json">
@@ -164,22 +173,22 @@ nav a{font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:upperc
   </div>
   <div class="hero-image hero-slideshow">
     <div class="slide active">
-      <img src="/images/hero-desktop.webp" alt="Elegant living room design by Joy Signature Designs" fetchpriority="high" />
+      <img src="/images/buckshot-living-1.webp" alt="Living room design by Joy Signature Designs" fetchpriority="high" />
     </div>
     <div class="slide">
-      <img src="/images/slide-1.webp" alt="Living room design by Joy Signature Designs" loading="lazy" />
+      <img src="/images/buckshot-coffee-1.webp" alt="Coffee bar and dining area by Joy Signature Designs" loading="lazy" />
     </div>
     <div class="slide">
-      <img src="/images/slide-2.webp" alt="Master bedroom by Joy Signature Designs" loading="lazy" />
+      <img src="/images/buckshot-bedroom-1.webp" alt="Master bedroom by Joy Signature Designs" loading="lazy" />
     </div>
     <div class="slide">
-      <img src="/images/slide-3.webp" alt="Kitchen design by Joy Signature Designs" loading="lazy" />
+      <img src="/images/yellowhammer-bath-1.webp" alt="Bathroom design by Joy Signature Designs" loading="lazy" />
     </div>
     <div class="slide">
-      <img src="/images/slide-4.webp" alt="Screened porch by Joy Signature Designs" loading="lazy" />
+      <img src="/images/buckshot-dining-1.webp" alt="Dining area by Joy Signature Designs" loading="lazy" />
     </div>
     <div class="slide">
-      <img src="/images/slide-5.webp" alt="Master bedroom design by Joy Signature Designs" loading="lazy" />
+      <img src="/images/buckshot-coffee-3.webp" alt="Coffee bar detail by Joy Signature Designs" loading="lazy" />
     </div>
     <div class="hero-badge">
       <div class="badge-icon">🎨</div>
@@ -229,15 +238,15 @@ nav a{font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:upperc
 <section class="about-preview">
   <div class="container about-grid">
     <div class="about-image-wrap reveal">
-      <img src="/images/hero-desktop.webp" alt="Rhonda Joy, interior designer" />
+      <img src="/images/rhonda-headshot-pro.webp" alt="Rhonda Joy, interior designer" />
       <div class="about-accent-bar"></div>
       <div class="about-accent-bar-2"></div>
     </div>
     <div class="about-content reveal reveal-delay-2">
       <span class="eyebrow">Meet Rhonda</span>
       <h2>Design With <em>Purpose</em>, Built on Experience</h2>
-      <p>Rhonda <span class="script-name">joy</span> has a gift for seeing a space's potential before anyone else can. With a background spanning animation, government work, and a lifelong love for design, she brings a creative eye that is truly one of a kind.</p>
-      <p>Her approach is simple. She takes your memories, your personality, and the things you love most and arranges them in a way that makes your space feel like it was always meant to look that way. Sometimes the smallest touches can completely transform how you feel when you walk through the door.</p>
+      <p>Rhonda <span class="script-name">joy</span> brings a uniquely creative perspective to interior design — one shaped by years working across multiple industries and a deep appreciation for how a space can completely change how you feel inside of it.</p>
+      <p>Whether your budget is modest or expansive, her approach stays the same: listen first, then design something that genuinely reflects who you are. From a single room refresh to a full home transformation, every project gets the same attention and care.</p>
       <div class="about-stats">
         <div class="stat">
           <strong>100%</strong>
@@ -253,6 +262,42 @@ nav a{font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:upperc
         </div>
       </div>
       <a href="/about" class="btn btn-outline" style="margin-top:2rem;">Learn More About Rhonda</a>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section class="before-after-section">
+  <div class="container">
+    <span class="eyebrow" style="text-align:center;display:block;">Real Transformations</span>
+    <h2 style="text-align:center;margin-bottom:0.5rem;">See the Difference</h2>
+    <p style="text-align:center;color:#7D6453;margin-bottom:3rem;">Every space has potential. Here's what Rhonda sees in it.</p>
+    <div class="ba-grid">
+      <div class="ba-pair">
+        <div class="ba-card">
+          <span class="ba-label">Before</span>
+          <img src="/images/before-bathroom-1.webp" alt="Bathroom before design by Joy Signature Designs" loading="lazy" />
+        </div>
+        <div class="ba-arrow">→</div>
+        <div class="ba-card">
+          <span class="ba-label after">After</span>
+          <img src="/images/yellowhammer-bath-1.webp" alt="Bathroom after design by Joy Signature Designs" loading="lazy" />
+        </div>
+      </div>
+      <div class="ba-pair">
+        <div class="ba-card">
+          <span class="ba-label">Before</span>
+          <img src="/images/before-bedroom-1.webp" alt="Bedroom before design by Joy Signature Designs" loading="lazy" />
+        </div>
+        <div class="ba-arrow">→</div>
+        <div class="ba-card">
+          <span class="ba-label after">After</span>
+          <img src="/images/buckshot-bedroom-1.webp" alt="Bedroom after design by Joy Signature Designs" loading="lazy" />
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="/gallery" class="btn btn-outline">View Full Gallery</a>
     </div>
   </div>
 </section>
@@ -341,12 +386,12 @@ nav a{font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:upperc
     <div class="testimonials-grid">
       <div class="testimonial-card reveal reveal-delay-1">
         <div class="stars">★★★★★</div>
-        <p>Rhonda completely transformed my living room. She listened to exactly what I wanted and delivered something even more beautiful than I imagined. I will never use another designer.</p>
+        <p>I cannot believe how amazing my new home looks. I almost have to pinch myself. When I bought my new home I had no idea it would come to life in such a way that made me feel like I lived in a very expensive home. The amount of money Rhonda was able to save me was beyond what I could have hoped for. I am very grateful I was the first in line.</p>
         <div class="testimonial-author">
-          <div class="author-initial">S</div>
+          <div class="author-initial">B</div>
           <div class="author-info">
-            <strong>Sarah M.</strong>
-            <span>Crestview, FL 32539</span>
+            <strong>B.C. Rigdon</strong>
+            <span>Crestview, FL</span>
           </div>
         </div>
       </div>
