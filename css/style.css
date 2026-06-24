@@ -77,13 +77,13 @@ p  { font-size: 1.05rem; color: var(--text-light); line-height: 1.9; }
 
 .script-name {
   font-family: var(--font-script);
-  font-size: 1.4em;
-  color: var(--taupe);
+  font-size: 1.15em;
+  color: var(--sea-salt);
   font-weight: 400;
 }
 .footer-bottom .script-name,
 .cta-banner .script-name {
-  color: var(--taupe);
+  color: var(--sea-salt);
 }
 
 .eyebrow {
@@ -120,11 +120,11 @@ section { padding: 7rem 0; }
 }
 .btn-primary {
   background: var(--black);
-  color: var(--taupe);
+  color: var(--sea-salt);
   box-shadow: 0 4px 16px rgba(17,17,17,0.2);
 }
 .btn-primary:hover {
-  background: var(--taupe-dark);
+  background: var(--sea-salt);
   color: var(--white);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(17,17,17,0.25);
@@ -140,12 +140,13 @@ section { padding: 7rem 0; }
   transform: translateY(-2px);
 }
 .btn-sea {
-  background: var(--taupe);
+  background: var(--sea-salt);
   color: var(--white);
-  box-shadow: 0 4px 16px rgba(125,100,83,0.35);
+  box-shadow: 0 4px 16px rgba(123,175,196,0.35);
 }
 .btn-sea:hover {
-  background: var(--taupe);
+  background: var(--sea-salt-dark);
+  color: var(--white);
   transform: translateY(-2px);
 }
 .btn-white {
@@ -501,7 +502,7 @@ nav a.active::after { transform: scaleX(1); }
   right: -1.5rem;
   width: 120px;
   height: 6px;
-  background: var(--taupe);
+  background: var(--sea-salt);
   border-radius: 3px;
 }
 .about-accent-bar-2 {
@@ -510,7 +511,7 @@ nav a.active::after { transform: scaleX(1); }
   left: -1.5rem;
   width: 80px;
   height: 6px;
-  background: var(--taupe);
+  background: var(--sea-salt);
   border-radius: 3px;
 }
 .about-content { padding-right: 2rem; }
