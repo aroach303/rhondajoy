@@ -99,7 +99,7 @@ p  { font-size: 1.05rem; color: var(--text-light); line-height: 1.9; }
 
 /* ── LAYOUT ── */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-section { padding: 7rem 0; }
+section { padding: 5rem 0; }
 
 /* ── BUTTONS ── */
 .btn {
@@ -1079,7 +1079,7 @@ footer {
   .logo-img { height: 150px; }
 }
 @media (max-width: 768px) {
-  section { padding: 5rem 0; }
+  section { padding: 3.5rem 0; }
   .container { padding: 0 1.25rem; }
   .services-grid { grid-template-columns: 1fr; }
   .credentials-grid { grid-template-columns: 1fr; }
