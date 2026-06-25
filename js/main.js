@@ -85,7 +85,7 @@ if (submitBtn) {
     submitBtn.textContent = 'Sending...';
 
     try {
-      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', { // TODO: Replace YOUR_FORM_ID with real Formspree ID from formspree.io
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({ name, phone, email, service, message })
