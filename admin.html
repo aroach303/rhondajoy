@@ -686,8 +686,10 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  const SUPABASE_URL  = 'https://ltmufkugsqlksnbrxfcw.supabase.co';
-  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx0bXVma3Vnc3Fsa3NuYnJ4ZmN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA2OTM2NzQsImV4cCI6MjA5NjI2OTY3NH0.y6WOM-p8LcXXKGgr95ucfCDRM1yAcj3aVHktrYelOjs';
+  const SUPABASE_URL  = window.__SUPABASE_URL__  || '';
+  const SUPABASE_ANON = window.__SUPABASE_ANON__ || '';
+  // NOTE: Set these via Vercel environment variables injected at build time.
+  // Never hardcode credentials here.
   const BUCKET        = 'gallery';
 
   const { createClient } = supabase;
