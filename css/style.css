@@ -1047,7 +1047,7 @@ footer {
   /* We use a separate mobile-hero-footer div added in HTML */
   .hero-mobile-footer {
     order: 3;
-    padding: 1.2rem 1.5rem 2rem;
+    padding: 1rem 1.5rem 1.2rem;
     text-align: center;
     background: var(--cream);
     display: flex;
