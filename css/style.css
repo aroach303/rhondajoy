@@ -22,7 +22,7 @@
   --text-light:     #5C4F45;
 
   --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-script:  'Great Vibes', 'Dancing Script', cursive;
+  --font-script:  'Allura', cursive;
   --font-body:    'Jost', sans-serif;
 
   --shadow-soft: 0 4px 24px rgba(17,17,17,0.07);
@@ -116,7 +116,7 @@ section { padding: 7rem 0; }
 }
 .btn-primary {
   background: var(--black);
-  color: var(--white);
+  color: var(--sea-salt);
   box-shadow: 0 4px 16px rgba(17,17,17,0.2);
 }
 .btn-primary:hover {
@@ -390,7 +390,8 @@ nav a.active::after { transform: scaleX(1); }
 .hero-image {
   position: relative;
   z-index: 1;
-  height: 100vh;
+  height: 100%;
+  min-height: 500px;
   overflow: hidden;
 }
 .hero-image picture,
