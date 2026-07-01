@@ -39,10 +39,10 @@ nav a{font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:upperc
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
 .hamburger span{display:block;width:24px;height:1.5px;background:#111}
 .mobile-nav{display:none}.hero-mobile-footer{display:none}.script-name{font-family:'Allura',cursive;font-size:1.8em;color:#7BAFC4;font-weight:400}
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding-top:6rem;background:linear-gradient(160deg,#EDE8E3 0%,#F5F2EE 35%,#EDE8E3 70%,#F5F2EE 100%);overflow:hidden;position:relative}
-.hero-content{position:relative;z-index:1;padding:4rem 4rem 4rem 3rem}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:stretch;padding-top:0;background:linear-gradient(160deg,#EDE8E3 0%,#F5F2EE 35%,#EDE8E3 70%,#F5F2EE 100%);overflow:hidden;position:relative}
+.hero-content{position:relative;z-index:1;padding:8rem 4rem 4rem 3rem}
 .hero-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3rem,5.5vw,5.2rem);line-height:1.08;margin-bottom:1.8rem;color:#111;font-weight:400;contain:layout}
-.hero-slideshow{position:relative;overflow:hidden;height:100%}@media(max-width:1024px){.hero-slideshow{height:70vw;min-height:300px;}}
+.hero-slideshow{position:relative;overflow:hidden;height:100%;min-height:100vh}@media(max-width:1024px){.hero-slideshow{height:70vw;min-height:300px;}}
 .hero-stats-float{position:absolute;bottom:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:center;gap:1.5rem;padding:0.75rem 2rem;background:rgba(125,100,83,0.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
 .hero-stat-item{display:flex;flex-direction:column;align-items:center;text-align:center;}
 .hero-stat-value{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;line-height:1;letter-spacing:0.02em;}
@@ -166,15 +166,13 @@ nav a{font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:upperc
 </nav>
 
 <main id="main" role="main">
-<!-- NEW TO EMERALD COAST BANNER -->
-<div class="emerald-banner" role="complementary" aria-label="Introduction">
-  <span class="emerald-eyebrow">New to the Emerald Coast</span>
-  <p class="emerald-tagline">Joy Signature Designs is bringing intentional, personalized interior design to Northwest Florida — from modest refreshes to full home transformations, every budget welcome.</p>
-</div>
-
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content container">
+    <div class="emerald-banner" style="margin-bottom:1.5rem;padding:0.75rem 1rem;border-radius:6px;">
+      <span class="emerald-eyebrow">New to the Emerald Coast</span>
+      <p class="emerald-tagline" style="font-size:0.95rem;">Joy Signature Designs is bringing intentional, personalized interior design to Northwest Florida — every budget welcome.</p>
+    </div>
     <span class="eyebrow">Residential &amp; Commercial Interior Design Consulting</span>
     <h1 class="hero-title" fetchpriority="high" elementtiming="lcp-h1">"Home Is Where <em class="script-name" style="font-size:1.8em;color:#7BAFC4;">joy</em> Resides"</h1>
     <p class="hero-sub">Transforming homes along the Emerald Coast into spaces that feel intentional, warm, and genuinely yours. In-person consultations available throughout Northwest Florida.</p>
