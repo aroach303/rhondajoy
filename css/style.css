@@ -994,13 +994,16 @@ footer {
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
 
+/* hide mobile-only elements on desktop */
+.hero-mobile-footer { display: none; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 0; }
   .hero::before { display: none; }
   .hero-image { order: 1; height: 70vw; min-height: 280px; margin-top: 80px; }
   .hero-content { display: none; }
-  .hero-mobile-footer { order: 2; padding: 2rem 1.5rem; }
+  .hero-mobile-footer { display: block; order: 2; padding: 2rem 1.5rem; text-align: center; }
   .hero-stats-float { display: none; }
   .emerald-banner { display: none; }
   .hero-badge { left: 50%; transform: translateX(-50%); bottom: 1.5rem; }
