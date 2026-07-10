@@ -312,7 +312,6 @@ nav a.active::after { transform: scaleX(1); }
   line-height: 1;
 }
 
-
 /* ── EMERALD COAST BANNER ── */
 .emerald-banner {
   background: var(--sea-salt-soft);
@@ -346,8 +345,8 @@ nav a.active::after { transform: scaleX(1); }
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: center;
-  padding-top: 6rem;
+  align-items: stretch;
+  padding-top: 0;
   background: linear-gradient(160deg, var(--blush) 0%, var(--cream) 35%, var(--sea-salt-soft) 70%, var(--sage) 100%);
   overflow: hidden;
   position: relative;
@@ -363,7 +362,7 @@ nav a.active::after { transform: scaleX(1); }
 .hero-content {
   position: relative;
   z-index: 1;
-  padding: 4rem 4rem 4rem 3rem;
+  padding: 8rem 4rem 4rem 3rem;
 }
 .hero-title {
   font-size: clamp(3rem, 5.5vw, 5.2rem);
@@ -391,7 +390,7 @@ nav a.active::after { transform: scaleX(1); }
   position: relative;
   z-index: 1;
   height: 100%;
-  min-height: 500px;
+  min-height: 100vh;
   overflow: hidden;
 }
 .hero-image picture,
@@ -695,22 +694,9 @@ nav a.active::after { transform: scaleX(1); }
   border-left: 3px solid var(--sea-salt);
 }
 .testimonial-card:hover { transform: translateY(-4px); }
-.testimonial-card::before {
-  content: '\201C';
-  font-family: var(--font-display);
-  font-size: 5rem;
-  line-height: 1;
-  color: var(--taupe-soft);
-  position: absolute;
-  top: 1rem; left: 1.5rem;
-  z-index: 0;
-}
 .testimonial-card p {
   font-size: 0.98rem;
   font-style: italic;
-  padding-top: 2rem;
-  position: relative;
-  z-index: 1;
   margin-bottom: 1.5rem;
   color: var(--text);
 }
@@ -811,6 +797,21 @@ footer {
 .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
 .footer-credit a { color: var(--taupe); text-decoration: underline; font-size: 0.78rem; }
 .footer-instagram a { color: var(--sea-salt); text-decoration: underline; font-size: 0.78rem; }
+.footer-social { display: flex; gap: 0.75rem; align-items: center; }
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 4px;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  transition: border-color 0.2s, color 0.2s;
+}
+.social-btn:hover { border-color: var(--sea-salt); color: var(--sea-salt); }
 
 /* ── PAGE HERO ── */
 .page-hero {
@@ -1032,19 +1033,16 @@ footer {
   .values-grid { grid-template-columns: 1fr; }
   .about-stats { grid-template-columns: 1fr 1fr; }
   .process-step:not(:last-child)::after { display: none; }
-  /* Text padding so nothing touches the edges */
   .page-hero { padding: 8rem 0 4rem; }
   .page-hero .container { padding: 0 1.5rem; }
   .section-header { padding: 0 1.5rem; }
   .service-full-card { padding: 2rem 1.5rem; }
   .testimonial-card { padding: 1.5rem; }
   .cta-banner .container { padding: 0 1.5rem; }
-  /* Prevent hero-title from running edge to edge */
   .hero-title { font-size: clamp(2.2rem, 8vw, 3.5rem); }
   h1 { font-size: clamp(2rem, 7vw, 3rem); }
   h2 { font-size: clamp(1.6rem, 6vw, 2.5rem); }
 }
-
 @media (max-width: 768px) {
   .logo-img { height: 80px; }
 }
